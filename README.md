@@ -9,7 +9,9 @@ Model;
 3) Criar o controller Universidade na pasta Control;
 4) Criar os arquivos get_universidade e post_universidade na pasta API;
 5) Criar a rota /universidades no arquivo index.php;
+
 ** BÔNUS **
+
 6) Criar o model universidade_pessoas;
 7) Adaptar as consultas do model universidade_pessoas pois não faz sentido
 selecionar tudo desta tabela. Você deverá criar uma função que irá retornar as
