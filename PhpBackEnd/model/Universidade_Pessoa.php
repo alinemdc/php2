@@ -31,27 +31,30 @@ class Universidade_Pessoa extends Conexao {
         $consulta->bindValue('id_pessoa',  $obj->id_pessoa);
         $consulta->bindValue('id_universidade' , $obj->id_universidade);
     	$consulta->execute();
-        return Conexao::lastId(); /*Aqui vc tem o ID da Universidade, você pode não retornar ele e adicionar uma nova query para inserção e inserir nas duas tabelas ao mesmo tempo se for sempre assim */        
+        return Conexao::lastId(); 
 	}
 
-	public function update($obj){
+	public function update($obj, $id_pessoa = null){
 		$sql = "UPDATE universidade_pessoas SET  
             id_universidade = :id_universidade 
-        WHERE id_pessoa = :id_pessoa;
+        WHERE id_pessoa = :id_pessoa";
 		$consulta = Conexao::prepare($sql);
-		$consulta->bindValue('id_universidade' , $obj->id_universidade);		
+		$consulta->bindValue('id_universidade' , $obj->id_universidade);	
+        $consulta->bindValue('id_pessoa', $id_pessoa);	
 		return $consulta->execute();
 	}
 
-	public function delete($obj){
+	public function delete ($obj, $id_pessoa = null){
 		$sql =  "DELETE FROM universidade_pessoas WHERE id_pessoa = :id_pessoa";
 		$consulta = Conexao::prepare($sql);
 		$consulta->bindValue('id_pessoa',$id_pessoa);
 		$consulta->execute();
         return $consulta->execute();
-	}
+    }
+    
+    
 
-	public function find($id = null){
+	public function find($obj, $id_universidade = null){
         $sql =  "SELECT * FROM universidade_pessoas WHERE id_universidade = :id_universidade";
         $consulta = Conexao::prepare($sql);
         $consulta->bindValue('id_universidade',$id_universidade);
@@ -60,4 +63,5 @@ class Universidade_Pessoa extends Conexao {
 	}
 
 }
+
 ?>
